@@ -6,5 +6,8 @@
 </head>
 <body>
 	<h1>Hello philosophy</h1>
+	<?php
+		echo site_url();
+	?>
 </body>
 </html>
