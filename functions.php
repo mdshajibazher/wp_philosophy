@@ -1,5 +1,8 @@
 <?php
 
+//include tgm
+require_once(get_theme_file_path('inc/tgm.php'));
+
 if(site_url() == 'http://localhost/philosophy'){
 	define("VERSION", time());
 }else{
@@ -12,6 +15,7 @@ function philosophy_theme_setup(){
 	add_theme_support( 'html5', array( 'comment-list', 'search-form' ) );
 	add_theme_support( 'post-formats', array('aside','image','gallery','video','audio','link','quote','status') );
 	add_editor_style('assets/css/editor-style.css');
+	register_nav_menu('topmenu',__('Top Menu','philosophy'));
 }
 add_action('after_setup_theme','philosophy_theme_setup');
 

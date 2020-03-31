@@ -7,3 +7,38 @@ Version: 1.0
 Tags: blogs, education
 Text Domian: philosophy
 */
+.header__nav li.menu-item-has-children > a::after {
+    top: 27px;
+ }
+
+ .header__nav li.menu-item-has-children > a.sub-menu-is-open::after {
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+ }
+
+.header__nav li.menu-item-has-children {
+    padding-right: 3.3rem;
+ }
+.header__nav li.menu-item-has-children > a::after {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    content: '';
+    display: block;
+    height: 5px;
+    width: 5px;
+    margin-top: -4px;
+    pointer-events: none;
+    position: absolute;
+    right: 1.8rem;
+    top: 21px;
+    -webkit-transform-origin: 66% 66%;
+    -ms-transform-origin: 66% 66%;
+    transform-origin: 66% 66%;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+ }
+
