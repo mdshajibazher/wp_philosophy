@@ -16,6 +16,7 @@ function philosophy_theme_setup(){
 	add_theme_support( 'post-formats', array('aside','image','gallery','video','audio','link','quote','status') );
 	add_editor_style('assets/css/editor-style.css');
 	register_nav_menu('topmenu',__('Top Menu','philosophy'));
+	add_image_size('philosophy-home-square',400,400,true);
 }
 add_action('after_setup_theme','philosophy_theme_setup');
 
@@ -37,6 +38,27 @@ function philosophy_assets(){
 	wp_enqueue_script('main-js',get_theme_file_uri('/assets/js/main.js'),array('jquery'), VERSION,true);
 }
 add_action( 'wp_enqueue_scripts','philosophy_assets' );
+
+
+
+function philosphy_pagination(){
+	global $wp_query;
+	$pgn =  paginate_links(
+		array(
+		'current' => max(1, get_query_var('paged')),
+		'total' => $wp_query->max_num_pages,
+		'type' => 'list',
+		)
+  );
+
+  $pgn = str_replace('page-numbers', 'pgn__num', $pgn);
+  $pgn = str_replace("<ul class='pgn__num'>", "<ul>", $pgn);
+  $pgn = str_replace('next pgn__num', 'pgn__next', $pgn);
+  $pgn = str_replace('prev pgn__num', 'pgn__prev', $pgn);
+
+ 
+  echo $pgn;
+}
 
 
  ?>

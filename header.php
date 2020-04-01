@@ -70,7 +70,7 @@
             </div> <!-- header-content -->
         </header> <!-- header -->
 
-<?php include_once(get_template_part('template-parts/blog-home/featured')); ?>
+<?php get_template_part('template-parts/blog-home/featured'); ?>
     
 
     </section> <!-- end s-pageheader -->
