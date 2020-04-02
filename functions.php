@@ -1,5 +1,7 @@
 <?php
-
+if (class_exists( 'Attachments' ) ) {
+	require_once('inc/attatchments.php');
+}
 //include tgm
 require_once(get_theme_file_path('inc/tgm.php'));
 
