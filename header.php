@@ -22,13 +22,13 @@
 
     <!-- pageheader
     ================================================== -->
-    <section class="s-pageheader s-pageheader--home">
+<section class="s-pageheader <?php if(is_home()) : ?> s-pageheader--home <?php endif; ?>">
 
         <header class="header">
             <div class="header__content row">
 
                 <div class="header__logo">
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="<?php echo home_url(); ?>">
                         <img src="<?php echo get_template_directory_uri()?>/assets/images/logo.svg" alt="Homepage">
                     </a>
                 </div> <!-- end header__logo -->
@@ -70,7 +70,11 @@
             </div> <!-- header-content -->
         </header> <!-- header -->
 
-<?php get_template_part('template-parts/blog-home/featured'); ?>
+<?php 
+if(is_home()) :
+get_template_part('template-parts/blog-home/featured');
+endif;
+ ?>
     
 
     </section> <!-- end s-pageheader -->
