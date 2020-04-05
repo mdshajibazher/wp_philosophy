@@ -63,4 +63,6 @@ function philosphy_pagination(){
 }
 
 
+remove_action('term_description','wpautop');
+
  ?>
