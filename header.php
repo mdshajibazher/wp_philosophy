@@ -22,15 +22,18 @@
 
     <!-- pageheader
     ================================================== -->
-<section class="s-pageheader <?php if(is_home()) : ?> s-pageheader--home <?php endif; ?>">
+<section class="s-pageheader  <?php echo apply_filters("philosophy_home","s-pageheader--home"); ?>">
 
         <header class="header">
             <div class="header__content row">
 
                 <div class="header__logo">
-                    <a class="logo" href="<?php echo home_url(); ?>">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/images/logo.svg" alt="Homepage">
-                    </a>
+                    <?php if(has_custom_logo()) : 
+                        the_custom_logo();
+                    else: ?>
+                        <h1><a href=""><?php bloginfo('name'); ?></a></h1>
+                    <?php endif; ?>
+
                 </div> <!-- end header__logo -->
 
                 <ul class="header__social">
@@ -51,15 +54,7 @@
                 <a class="header__search-trigger" href="#0"></a>
 
                 <div class="header__search">
-
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="search-submit" value="Search">
-                    </form>
-        
+                    <?php get_search_form(); ?>
                     <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
 
                 </div>  <!-- end header__search -->

@@ -42,3 +42,15 @@ Text Domian: philosophy
     transition: all 0.3s ease-in-out;
  }
 
+.header__logo h1{
+   margin: 0;
+   font-weight: bold;
+   font-weight: bold;
+   color: #ffffff;
+   text-transform: uppercase;
+
+}
+.header__logo h1 a{
+   color: #fff;
+   text-decoration: none;
+}

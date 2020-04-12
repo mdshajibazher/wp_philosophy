@@ -14,10 +14,18 @@ function philosophy_theme_setup(){
 	load_theme_textdomain( 'philosophy');
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'custom-logo' );
 	add_theme_support( 'html5', array( 'comment-list', 'search-form' ) );
 	add_theme_support( 'post-formats', array('aside','image','gallery','video','audio','link','quote','status') );
 	add_editor_style('assets/css/editor-style.css');
 	register_nav_menu('topmenu',__('Top Menu','philosophy'));
+
+	register_nav_menus(array(
+		'footer-left' => __('Footer Left Menu','philosophy'),
+		'footer-middle' => __('Footer Middle Menu','philosophy'),
+		'footer-right' => __('Footer Right Menu','philosophy'),
+	));
+
 	add_image_size('philosophy-home-square',400,400,true);
 }
 add_action('after_setup_theme','philosophy_theme_setup');
@@ -101,10 +109,72 @@ function philosophy_widgets(){
         'after_widget'  => '</div>',
         'before_title'  => '<h3>',
         'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+        'name'          => __( 'Footer Section', 'philosophy' ),
+		'id'            => 'footer-right',
+        'description'          => __( 'This Sidebar Shows Footer right content', 'philosophy' ),
+        'before_widget' => '<div id="%1$s" class=" %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+	) );
+	register_sidebar( array(
+        'name'          => __( 'Footer Copyright', 'philosophy' ),
+		'id'            => 'footer-copyright',
+        'description'          => __( 'This Sidebar Shows Footer Copyright content', 'philosophy' ),
+        'before_widget' => '<div id="%1$s" class=" %2$s"><span>',
+        'after_widget'  => '</span></div>',
+        'before_title'  => '<span>',
+        'after_title'   => '</span>',
     ) );
 }
 
 add_action('widgets_init','philosophy_widgets');
 
+function philosophy_search_form($form){
+	$homedir = home_url('/');
+	$search_label = __('Search for:','philosophy');
+	$search_value = __('Search','philosophy');
+	$newForm = '
+	<form role="search" method="get" class="header__search-form" action="'.$homedir.'">
+	<label>
+		<span class="hide-content">'.$search_label.'</span>
+		<input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+	</label>
+	<input type="submit" class="search-submit" value="'.$search_value.'">
+</form>';
+	
 
+	return $newForm;
+}
+add_filter('get_search_form','philosophy_search_form');
+
+
+
+
+function cat_page($category_title){
+	if('music' == $category_title){
+		$visit_count = get_option("category_music");
+		$visit_count = $visit_count ? $visit_count : 0;
+		$visit_count++;
+		update_option("category_music",$visit_count);
+	}
+}
+add_action('philosophy_category_page','cat_page');
+
+function mytext($text1, $text2){
+	return strtoupper($text1).ucwords($text2);
+}
+add_filter('philosophy_text','mytext',10,2);
+
+
+function philosophy_home_class($class_name){
+	if(is_home()){
+		return $class_name;
+	}else{
+		return '';
+	}
+}
+add_filter('philosophy_home', 'philosophy_home_class');
  ?>

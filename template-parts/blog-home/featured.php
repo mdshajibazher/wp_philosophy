@@ -16,6 +16,7 @@ $post_data[] = array(
     'author' => get_the_author_meta("display_name"),
     'author_avatar' => get_avatar_url(get_the_author_meta('ID')),
     'cat' => $categories[0]->name,
+    'catlink' => get_category_link($categories[0])
     
 );
 endwhile;
@@ -33,7 +34,7 @@ if($philosophy_fp->post_count>0) :
                         <div class="entry" style="background-image:url('<?php echo esc_url($post_data[0]['thumbnail']); ?>')">
                             
                             <div class="entry__content">
-                                <span class="entry__category"><a href="#0"><?php echo esc_html($post_data[0]['cat']); ?></a></span>
+                                <span class="entry__category"><a href="<?php echo esc_url($post_data[0]['catlink']); ?>"><?php echo esc_html($post_data[0]['cat']); ?></a></span>
 
                                 <h1><a href="#0" title=""><?php echo esc_html($post_data[0]['title']); ?></a></h1>
 
@@ -58,7 +59,7 @@ if($philosophy_fp->post_count>0) :
                             <div class="entry" style="background-image:url('<?php echo esc_html($post_data[$i]['thumbnail']); ?>')">
                             
                             <div class="entry__content">
-                                <span class="entry__category"><a href="#0"><?php echo esc_html($post_data[$i]['cat']); ?></a></span>
+                                <span class="entry__category"><a href="<?php echo esc_html($post_data[$i]['catlink']); ?>"><?php echo esc_html($post_data[$i]['cat']); ?></a></span>
 
                                 <h1><a href="#0" title=""><?php echo esc_html($post_data[$i]['title']); ?></a></h1>
 
